@@ -1,0 +1,63 @@
+<div *ngIf="joinedProjects$ | async as joinedProjects">
+	<h2>Joined Projects</h2>
+	<table *ngIf="joinedProjects.length > 0; else noProjects">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Owner</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				*ngFor="let project of joinedProjects"
+				app-joined-project-item
+				[project]="project"
+			></tr>
+		</tbody>
+	</table>
+</div>
+
+<div *ngIf="notJoinedProjects$ | async as notJoinedProjects">
+	<h2>Projects</h2>
+	<table *ngIf="notJoinedProjects.length > 0; else noProjects">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Owner</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				*ngFor="let project of notJoinedProjects"
+				app-project-item
+				[project]="project"
+			></tr>
+		</tbody>
+	</table>
+</div>
+
+<div *ngIf="archivedProjects$ | async as archivedProjects">
+	<h2>Archived Projects <button *ngIf="archivedProjects.length > 0" id="archivedTableButton" class="btn btn-secondary" (click)="toggleVisibilityTable('archivedTable', 'archivedTableButton')">Show</button></h2>
+	<table id="archivedTable" *ngIf="archivedProjects.length > 0; else noProjects">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Owner</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				*ngFor="let project of archivedProjects$ | async"
+				app-archived-project-item
+				[project]="project"
+			></tr>
+		</tbody>
+	</table>
+</div>
+
+<ng-template #noProjects>
+	<h4>No Projects Found</h4>
+</ng-template>

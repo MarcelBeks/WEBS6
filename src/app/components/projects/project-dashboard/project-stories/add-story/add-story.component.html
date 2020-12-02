@@ -1,0 +1,33 @@
+<div>
+	<h4>Add Story</h4>
+	<div *ngIf="error" class="error-box">
+		{{ errorText }}
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+                <th>Description</th>
+                <th>Story Points</th>
+                <th>Assignee</th>
+                <th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+                <td data-label="Name"><input [(ngModel)]="newStory.name" type="text" /></td>
+                <td data-label="Description"><input [(ngModel)]="newStory.description" type="text" /></td>
+				<td data-label="Story Points"><input [(ngModel)]="newStory.points" type="number" /></td>
+				<td data-label="Assignee">
+					<select (change)="newStory.assignee = $event.target.value">
+						<option [selected]="newStory.assignee == ''"></option>
+						<option *ngFor="let member of project.members | keyvalue" [value]="member.value.userId">{{member.value.name}}</option>
+					</select>
+				</td>
+				<td data-label="Actions">
+					<button class="btn btn-success" (click)="createStory()" [disabled]="!newStory.name">Create</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

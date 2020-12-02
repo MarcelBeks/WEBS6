@@ -1,0 +1,69 @@
+<div>
+    <h2>Sprints <button class="btn btn-secondary btn-sm" (click)="createActive = !createActive">Create Sprint</button></h2>
+    <app-add-sprint *ngIf="createActive" [project]="project"></app-add-sprint>
+</div>
+
+<div *ngIf="error" class="error-box">
+    {{ errorText }}
+</div>
+
+<div *ngIf="activeSprint | async as activeSprint; else noSprintsH4">
+    <div>
+        <h4>Active Sprint</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Start date</th>
+                    <th>End date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Name">{{ activeSprint.name }}</td>
+                    <td data-label="Start date">{{ activeSprint.startdate | date:'dd-MM-yyyy' }}</td>
+                    <td data-label="End date">{{ activeSprint.enddate | date:'dd-MM-yyyy' }}</td>
+                    <td data-label="Actions">
+                        <button class="btn btn-primary" (click)="dashboard(activeSprint)">Dashboard</button>
+                        <button class="btn btn-primary" (click)="addStories(activeSprint)">Add Stories</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div *ngIf="sprints | async as allSprints">
+        <h4>Other Sprints</h4>
+        <table *ngIf="allSprints.length > 0; else noSprints">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Start date</th>
+                    <th>End date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sprint of allSprints">
+                    <td data-label="Name">{{ sprint.name }}</td>
+                    <td data-label="Start date">{{ sprint.startdate | date:'dd-MM-yyyy' }}</td>
+                    <td data-label="End date">{{ sprint.enddate | date:'dd-MM-yyyy' }}</td>
+                    <td data-label="Actions">
+                        <button class="btn btn-secondary" (click)="changeActiveSprint(sprint, activeSprint)">Make active</button>
+                        <button class="btn btn-primary" (click)="dashboard(sprint)">Dashboard</button>
+                        <button class="btn btn-primary" (click)="addStories(sprint)">Add Stories</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #noSprints>
+	<h6>No Sprints Found</h6>
+</ng-template>
+
+<ng-template #noSprintsH4>
+	<h4>No Sprints Found</h4>
+</ng-template>

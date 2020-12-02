@@ -1,0 +1,88 @@
+<div *ngIf="stories" class="storyboard">
+
+    <div class="container">
+        <div *ngIf="error" class="error-box">
+            {{ errorText }}
+        </div>
+    </div>
+
+    <div class="board-wrapper">
+
+        <div class="board-columns" cdkDropListGroup>
+
+            <div class="board-column">
+                <div class="column-title">
+                    Stories
+                    <hr>
+                </div>
+
+                <div class="stories-container"
+                    cdkDropList
+                    #availableList="cdkDropList"
+                    [cdkDropListData]="available"
+                    (cdkDropListDropped)="drop($event, 'available')"
+                >
+                    <span *ngFor="let story of available; trackBy: trackByFn">
+                        <app-storyboard-story (onError)="throwError($event)" [story]="story" [project]="project" cdkDrag></app-storyboard-story>
+                    </span>
+                </div>                
+            </div>
+
+            <div class="board-column">
+                <div class="column-title">
+                    Todo
+                    <hr>
+                </div>
+
+                <div class="stories-container"
+                    cdkDropList
+                    #todoList="cdkDropList"
+                    [cdkDropListData]="todo"
+                    (cdkDropListDropped)="drop($event, 'todo')"
+                >
+                    <span *ngFor="let story of todo; trackBy: trackByFn">
+                        <app-storyboard-story (onError)="throwError($event)" [story]="story" [project]="project" cdkDrag></app-storyboard-story>
+                    </span>
+                </div>  
+            </div>
+
+            <div class="board-column">
+                <div class="column-title">
+                    In progress
+                    <hr>
+                </div>
+
+                <div class="stories-container"
+                    cdkDropList
+                    #inprogressList="cdkDropList"
+                    [cdkDropListData]="inprogress"
+                    (cdkDropListDropped)="drop($event, 'inprogress')"
+                >
+                    <span *ngFor="let story of inprogress; trackBy: trackByFn">
+                        <app-storyboard-story (onError)="throwError($event)" [story]="story" [project]="project" cdkDrag></app-storyboard-story>
+                    </span>
+                </div>  
+            </div>
+
+            <div class="board-column">
+                <div class="column-title">
+                    Done
+                    <hr>
+                </div>
+
+                <div class="stories-container"
+                    cdkDropList
+                    #doneList="cdkDropList"
+                    [cdkDropListData]="done"
+                    (cdkDropListDropped)="drop($event, 'done')"
+                >
+                    <span *ngFor="let story of done; trackBy: trackByFn">
+                        <app-storyboard-story (onError)="throwError($event)" [story]="story" [project]="project" cdkDrag></app-storyboard-story>
+                    </span>
+                </div>  
+            </div>
+
+        </div>
+
+    </div>
+</div>

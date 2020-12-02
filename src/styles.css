@@ -1,0 +1,107 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { height: 100%; width: 100%; }
+body { 
+	font-family: Roboto, "Helvetica Neue", sans-serif; 
+	height: 100%;
+	width: 100%;
+	background: rgba(59, 134, 255, 0.9);
+	padding-bottom: 200px;
+	margin:0;
+}
+
+/* table {
+	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+	width: 100%;
+	background: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 710px) {
+	table{
+		table-layout: auto;
+		width: 100%;
+		overflow-x: auto;
+		display: block;
+	}
+}
+
+th,
+td {
+	border: 1px solid rgba(41, 39, 39, 0.3);
+	text-align: left;
+	padding: 15px;
+} */
+
+.error-box {
+    background: rgba(255, 26, 26, 0.9);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 15px;
+    color: white;
+    border-radius: 4px;
+}
+
+button {
+	margin: 5px;
+}
+
+
+
+*{
+	box-sizing: border-box;
+}
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table td,table th{
+  padding:12px 15px;
+  border: 1px solid rgba(41, 39, 39, 0.3);
+  text-align: left;
+}
+
+table th{
+	background: rgba(71, 71, 71);
+	color:#ffffff;
+}
+
+table td{
+	background: rgba(255,255,255,0.6);
+}
+
+/*responsive*/
+
+@media(max-width: 715px){
+	table thead{
+		display: none;
+	}
+
+	table, table tbody, table tr, table td{
+		display: block;
+		width: 100%;
+	}
+	table tr{
+		margin-bottom:15px;
+	}
+	table td{
+		text-align: right;
+		padding-left: 50%;
+		text-align: right;
+		position: relative;
+	}
+	table td::before{
+		content: attr(data-label);
+		position: absolute;
+		left:0;
+		width: 50%;
+		padding-left:15px;
+		font-size:15px;
+		font-weight: bold;
+		text-align: left;
+	}
+}

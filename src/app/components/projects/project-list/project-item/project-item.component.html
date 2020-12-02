@@ -1,0 +1,5 @@
+<td data-label="Title">{{ project.title }}</td>
+<td data-label="Owner">{{ getOwnerName(project.owner) }}</td>
+<td *ngIf="authService.user as user" data-label="Actions">
+	<button class="btn btn-primary" (click)="joinProject(project, user)">Join</button>
+</td>

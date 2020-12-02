@@ -1,0 +1,7 @@
+<div class="container">
+	<div *ngIf="project$ | async as project">
+		<app-project-members [project]="project"></app-project-members>
+		<app-project-sprints [project]="project"></app-project-sprints>
+		<app-project-stories [project]="project"></app-project-stories>
+	</div>
+</div>

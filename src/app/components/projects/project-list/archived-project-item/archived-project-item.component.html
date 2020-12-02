@@ -1,0 +1,5 @@
+<td data-label="Title">{{ project.title }}</td>
+<td data-label="Owner">{{ getOwnerName(project.owner) }}</td>
+<td data-label="Actions">
+	<button class="btn btn-primary" (click)="archive()">Dearchive</button>
+</td>

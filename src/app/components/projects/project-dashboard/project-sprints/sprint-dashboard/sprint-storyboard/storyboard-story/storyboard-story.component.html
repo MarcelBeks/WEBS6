@@ -1,0 +1,25 @@
+<div class="story">
+
+    <div class="story-info">
+        <div class="story-name">
+            {{ story.name }}
+        </div>
+
+        <div class="story-description">
+            {{ story.description }}
+        </div>
+
+        <div class="story-points">
+            <strong>Story points: </strong>{{ story.points }}
+        </div>
+        
+    </div>
+    
+    <div class="story-assignee">
+        <select (change)="updateAssignee($event.target.value)">
+            <option [selected]="story.assignee == ''"></option>
+            <option *ngFor="let member of project.members | keyvalue" [value]="member.value.userId" [selected]="story.assignee == member.value.userId">{{member.value.name}}</option>
+        </select>
+    </div>
+    
+</div>

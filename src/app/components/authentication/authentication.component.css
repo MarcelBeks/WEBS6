@@ -1,0 +1,22 @@
+.login {
+	float: left;
+	text-align: center;
+}
+
+.registration {
+	float: left;
+	text-align: center;
+	border-left: 1px solid gray;
+}
+
+input {
+	display: block;
+	margin: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	border-radius: 1px;
+}
+
+.container {
+	padding-top: 50px;
+}

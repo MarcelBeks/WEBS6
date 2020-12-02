@@ -1,0 +1,41 @@
+<div *ngIf="!editing; else editingTemplate">
+    <h1>{{ project.title }} <button class="btn btn-primary" (click)="prepareEdit(project)">Edit</button></h1>
+    <h2>Members</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let member of project.members | keyvalue">
+                <td data-label="Name">{{ member.value.name }}</td>
+                <td data-label="Role">{{ member.value.role }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #editingTemplate>
+    <h1>
+        <input type="text" [(ngModel)]="editProject.title">
+        <button class="btn btn-success" [disabled]="!editProject.title" (click)="updateProject(editProject)">Save</button>
+        <button class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
+    </h1>
+    <h2>Members</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let member of editProject.members | keyvalue">
+                <td data-label="Name">{{ member.value.name }}</td>
+                <td data-label="Role"><input type="text" [(ngModel)]="member.value.role"></td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>

@@ -1,0 +1,7 @@
+<!-- When edit is not active -->
+<td data-label="Title">{{ project.title }}</td>
+<td data-label="Owner">{{ getOwnerName(project.owner) }}</td>
+<td data-label="Actions">
+	<button class="btn btn-primary" (click)="dashboard()">Dashboard</button>
+	<button *ngIf="authService.firebaseAuth.auth.currentUser.uid == project.owner" class="btn btn-primary" (click)="archive()">Archive</button>
+</td>

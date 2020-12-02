@@ -1,0 +1,54 @@
+<div *ngIf="project$ | async as project">
+    <div *ngIf="sprint$ | async as sprint">
+        <div class="container">
+
+            <div *ngIf="error" class="error-box">
+                {{ errorText }}
+            </div>
+
+            <div class="board-wrapper">
+
+                <div class="board-columns" cdkDropListGroup>
+
+                    <div class="board-column">
+                        <div class="column-title">
+                            {{ sprint.name }}
+                            <hr>
+                        </div>
+
+                        <div class="stories-container"
+                            cdkDropList
+                            #sprint="cdkDropList"
+                            [cdkDropListData]="sprintList"
+                            (cdkDropListDropped)="drop($event, sprint.id, sprint)"
+                        >
+                            <span *ngFor="let story of sprintList; trackBy: trackByFn">
+                                <app-storyboard-story (onError)="throwError($event)" [story]="story" [project]="project" cdkDrag></app-storyboard-story>
+                            </span>
+                        </div>                
+                    </div>
+
+                    <div class="board-column">
+                        <div class="column-title">
+                            Backlog
+                            <hr>
+                        </div>
+
+                        <div class="stories-container"
+                            cdkDropList
+                            #available="cdkDropList"
+                            [cdkDropListData]="availableList"
+                            (cdkDropListDropped)="drop($event, '', sprint)"
+                        >
+                            <span *ngFor="let story of availableList; trackBy: trackByFn">
+                                <app-storyboard-story (onError)="throwError($event)" [story]="story" [project]="project" cdkDrag></app-storyboard-story>
+                            </span>
+                        </div>  
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

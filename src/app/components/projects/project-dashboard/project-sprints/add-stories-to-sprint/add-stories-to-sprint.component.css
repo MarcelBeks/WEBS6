@@ -1,0 +1,61 @@
+.board-wrapper {
+    display: flex;
+    flex-grow: 1;
+    overflow-x: auto;
+}
+
+.board-columns {
+    display: flex;
+    flex-grow: 1;
+}
+
+.board-column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+
+    min-width: 300px;
+    margin: 50px;
+    padding: 25px;
+
+    border-radius: 4px;
+
+    background: rgba(255,255,255,0.6);
+}
+
+.board-column:not(:first-child) {
+    margin-left: 0;
+}
+
+.column-title {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.stories-container {
+    flex-grow: 1;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.stories-container.cdk-drop-list-dragging .story:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

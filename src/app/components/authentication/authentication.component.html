@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="login col-lg-6">
+		<h4>Log in</h4>
+
+		<input [(ngModel)]="emailLogin" type="text" placeholder="Email" />
+		<input [(ngModel)]="passwordLogin" type="text" placeholder="Password" />
+		<button
+			class="btn btn-primary"
+			(click)="login()"
+			[disabled]="!emailLogin || !passwordLogin"
+		>
+			Log in
+		</button>
+	</div>
+
+	<div class="registration col-lg-6">
+		<h4>Register</h4>
+
+		<input [(ngModel)]="nameRegister" type="text" placeholder="Name" />
+		<input [(ngModel)]="emailRegister" type="text" placeholder="Email" />
+		<input
+			[(ngModel)]="passwordRegister"
+			type="text"
+			placeholder="Password"
+		/>
+		<button
+			class="btn btn-primary"
+			(click)="register()"
+			[disabled]="!nameRegister || !emailRegister || !passwordRegister"
+		>
+			Register
+		</button>
+	</div>
+</div>

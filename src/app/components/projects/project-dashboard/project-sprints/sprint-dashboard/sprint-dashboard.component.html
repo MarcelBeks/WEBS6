@@ -1,0 +1,35 @@
+<div *ngIf="sprint$ | async as sprint">
+    <div class="container">
+        <div *ngIf="!editing; else editSprintTemplate">
+            <h2>{{ sprint.name }}<button class="btn btn-primary" (click)="prepareEdit(sprint)">Edit</button></h2>
+            <h5>Start date: {{ sprint.startdate | date:'dd-MM-yyyy' }}</h5>
+            <h5>End date: {{ sprint.enddate | date:'dd-MM-yyyy' }}</h5>
+        </div>
+
+        <ng-template #editSprintTemplate>
+            <div *ngIf="error" class="error-box">
+                {{ errorText }}
+            </div>
+            <h2>
+                <input type="text" [(ngModel)]="editSprint.name">
+                <button 
+                    class="btn btn-success" 
+                    (click)="updateSprint(editSprint)"
+                    [disabled]="!editSprint.name || !editSprint.startdate || !editSprint.enddate"
+                >
+                    Save
+                </button>
+                <button class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
+            </h2>
+            <h5>Start date: <input type="date" [(ngModel)]="editSprint.startdate"></h5>
+            <h5>End date: <input type="date" [(ngModel)]="editSprint.enddate"></h5>
+        </ng-template>
+    </div>
+
+    <div *ngIf="project$ | async as project">
+        <span *ngIf="stories$ | async as stories">
+            <app-sprint-burndownchart [sprint]="sprint" [project]="project" [stories]="stories"></app-sprint-burndownchart>
+            <app-sprint-storyboard [sprint]="sprint" [project]="project" [stories]="stories"></app-sprint-storyboard>
+        </span>
+    </div>
+</div>

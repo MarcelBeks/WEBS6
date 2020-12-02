@@ -1,0 +1,17 @@
+<nav>
+	<input type="checkbox" id="check">
+	<label for="check" class="checkbtn">
+		<i class="fas fa-bars"></i>
+	</label>
+	<label class="logo">TaskManager</label>
+	<ul>
+		<li><a routerLink="/" (click)="clickMenuItem()">Home</a></li>
+		<li><a routerLink="/projects" (click)="clickMenuItem()">Projects</a></li>
+		<span *ngIf="authService.user as user; else showLogin">
+			<li class="auth"><a>Hello, {{ user.displayName }} <button class="btn btn-primary" (click)="logout()">Log out</button></a></li>
+		</span>
+		<ng-template #showLogin>
+			<li class="auth"><a routerLink="/authentication" (click)="clickMenuItem()">Login</a></li>
+		</ng-template>
+	</ul>
+</nav>

@@ -1,0 +1,32 @@
+<div>
+	<h4>Add Sprint</h4>
+	<div *ngIf="error" class="error-box">
+		{{ errorText }}
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+                <td data-label="Name"><input [(ngModel)]="newSprint.name" type="text" /></td>
+                <td data-label="Start date"><input [(ngModel)]="newSprint.startdate" type="date" /></td>
+                <td data-label="End date"><input [(ngModel)]="newSprint.enddate" type="date" /></td>
+				<td data-label="Actions">
+					<button
+						class="btn btn-success"
+						(click)="createSprint()"
+						[disabled]="!newSprint.name || !newSprint.startdate || !newSprint.enddate"
+                    >
+                        Create
+                    </button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

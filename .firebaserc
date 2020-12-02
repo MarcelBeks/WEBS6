@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "taskboard-webs6": {
+      "hosting": {
+        "taskmanager": [
+          "taskboard-webs6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "taskboard": "taskboard-webs6"
+  }
+}

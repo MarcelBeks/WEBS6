@@ -1,0 +1,73 @@
+<div>
+    <h2>Stories <button class="btn btn-secondary btn-sm" (click)="createActive = !createActive">Create Story</button></h2>
+    <app-add-story *ngIf="createActive" [project]="project"></app-add-story>
+    <app-edit-story *ngIf="editing" [story]="editStory" [project]="project" (onCancel)="cancelEditing($event)"></app-edit-story>
+</div>
+
+<div *ngIf="error" class="error-box">
+	{{ errorText }}
+</div>
+
+<div *ngIf="stories$ | async as stories">
+    <div>
+        <table *ngIf="stories.length > 0; else noStories">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Story Points</th>
+                    <th>Assignee</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let story of stories">
+                    <td data-label="Name">{{ story.name }}</td>
+                    <td data-label="Description">{{ story.description }}</td>
+                    <td data-label="Status">{{ story.status }}</td>
+                    <td data-label="Story Points">{{ story.points }}</td>
+                    <td *ngIf="story.assignee" data-label="Assignee">{{ getAssigneeName(story.assignee) }}</td>
+                    <td *ngIf="!story.assignee" data-label="Assignee"></td>
+                    <td data-label="Actions">
+                        <button class="btn btn-primary" (click)="prepareEdit(story)">Edit</button>
+                        <button class="btn btn-primary" (click)="updateArchivedStory(story)">Archive</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="archivedStories$ | async as stories">
+    <h2>Archived Stories <button *ngIf="stories.length > 0" id="archivedTableButton" class="btn btn-secondary btn-sm" (click)="toggleVisibilityTable('archivedTable', 'archivedTableButton')">Show</button></h2>
+    <div>
+        <table id="archivedTable" *ngIf="stories.length > 0; else noStories">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Story Points</th>
+                    <th>Assignee</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let story of stories">
+                    <td data-label="Name">{{ story.name }}</td>
+                    <td data-label="Description">{{ story.description }}</td>
+                    <td data-label="Status">{{ story.status }}</td>
+                    <td data-label="Story Points">{{ story.points }}</td>
+                    <td *ngIf="story.assignee" data-label="Assignee">{{ getAssigneeName(story.assignee) }}</td>
+                    <td *ngIf="!story.assignee" data-label="Assignee"></td>
+                    <td data-label="Actions"><button class="btn btn-primary" (click)="updateArchivedStory(story)">Dearchive</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #noStories>
+	<h4>No Stories Found</h4>
+</ng-template>

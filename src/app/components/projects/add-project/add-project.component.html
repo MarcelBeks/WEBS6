@@ -1,0 +1,25 @@
+<div>
+	<h2>Create Project</h2>
+	<table>
+		<thead>
+			<tr>
+				<th class="col-9">Title</th>
+				<th class="col-3">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td data-label="Title"><input [(ngModel)]="projectTitle" type="text" /></td>
+				<td data-label="Actions">
+					<button
+						class="btn btn-success"
+						(click)="createProject()"
+						[disabled]="!projectTitle"
+					>
+						Create
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
